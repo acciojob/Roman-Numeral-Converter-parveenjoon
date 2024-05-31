@@ -1,38 +1,36 @@
+
 function convertToRoman(num) {
-  const obj = {
-    0:['M',1000], 
-    1:['D', 500], 
-    2:['C', 100], 
-    3:['L', 50], 
-    4:['X', 10], 
-    5:['V', 5], 
-    6:['I', 1]
-  };
+  const romanNumerals = [
+    { value: 1000, numeral: "M" },
+    { value: 900, numeral: "CM" },
+    { value: 500, numeral: "D" },
+    { value: 400, numeral: "CD" },
+    { value: 100, numeral: "C" },
+    { value: 90, numeral: "XC" },
+    { value: 50, numeral: "L" },
+    { value: 40, numeral: "XL" },
+    { value: 10, numeral: "X" },
+    { value: 9, numeral: "IX" },
+    { value: 5, numeral: "V" },
+    { value: 4, numeral: "IV" },
+    { value: 1, numeral: "I" },
+  ];
 
-  let romanNumeral = '';
+  let result = "";
 
-  // Iterate over the symbols and build the Roman numeral representation
-  for (let i = 0; i < Object.keys(obj).length; i++) {
-    const symbol = obj[i][0];
-    const value = obj[i][1];
-
-    // Calculate the number of times the symbol should be added to the Roman numeral
-    const count = Math.floor(num / value);
-
-    // Append the symbol to the Roman numeral count times
-    for (let j = 0; j < count; j++) {
-      romanNumeral += symbol;
+  for (let i = 0; i < romanNumerals.length; i++) {
+    while (num >= romanNumerals[i].value) {
+      result += romanNumerals[i].numeral;
+      num -= romanNumerals[i].value;
     }
-
-    // Update the remaining number
-    num %= value;
   }
 
-  return romanNumeral;
+  return result;
 }
 
+// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
-// Uncomment the following line to test the function with input 36
-console.log(convertToRoman(36));
+// console.log(convertToRoman(14));
 
+// do not edit below this line
 module.exports = convertToRoman;
